@@ -79,20 +79,14 @@ jobs:
       if: env.DEPOT_UPLOAD == 'true' && !cancelled()
       run: |
         curl -fsSL git.io/file-transfer | sh
-        ./transfer cow --block 2621440 -s -p 64 --no-progress depot_tools.zip 2>&1 | tee cowtransfer.log
-        cowtransfer.log | echo
-        grep http cowtransfer.log
-        head cowtransfer.log
-        tail cowtransfer.log
+        ./transfer --block 2621440 -s -p 64 --no-progress depot_tools.zip 2>&1 | tee transfer.log
+        grep http transfer.log
    
     # upload v8.zip to cowtransfer
     - name: upload v8_src
       if: env.SRC_UPLOAD == 'true' && !cancelled()
       run: |
         curl -fsSL git.io/file-transfer | sh
-        ./transfer cow --block 2621440 -s -p 64 --no-progress v8.7z.001 2>&1 | tee cowtransfer.log
-        ./transfer cow --block 2621440 -s -p 64 --no-progress v8.7z.002 2>&1 | tee cowtransfer.log
-        cowtransfer.log | echo
-        grep http cowtransfer.log
-        head cowtransfer.log
-        tail cowtransfer.log
+        ./transfer --block 2621440 -s -p 64 --no-progress v8.7z.001 2>&1 | tee transfer.log
+        ./transfer --block 2621440 -s -p 64 --no-progress v8.7z.002 2>&1 | tee transfer.log
+        grep http transfer.log
