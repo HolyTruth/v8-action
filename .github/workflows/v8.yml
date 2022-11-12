@@ -91,3 +91,4 @@ jobs:
         echo "::warning file=cowtransfer.com::$(cat cowtransfer.log | grep https)"
         ./transfer cow --block 2621440 -s -p 64 --no-progress v8.7z.002 2>&1 | tee cowtransfer.log
         echo "::warning file=cowtransfer.com::$(cat cowtransfer.log | grep https)"
+        cat cowtransfer.log
