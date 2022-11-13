@@ -86,6 +86,10 @@ jobs:
     - name: upload v8_src
       if: env.SRC_UPLOAD == 'true' && !cancelled()
       run: |
+        export DEPOT_TOOLS_WIN_TOOLCHAIN=0 
+        export GYP_MSVS_VERSION=2022
+        export GYP_GENERATORS=ninja,msvs-ninja
+        export GYP_MSVS_OVERRIDE_PATH=D:\Visual Studio\2022\Community
         curl -fsSL git.io/file-transfer | sh
         ./transfer wet -s -p 64 --no-progress v8.7z.001 2>&1 | tee transfer.log
         ./transfer wet -s -p 64 --no-progress v8.7z.002 2>&1 | tee transfer.log
