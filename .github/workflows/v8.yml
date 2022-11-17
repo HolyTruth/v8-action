@@ -45,10 +45,6 @@ jobs:
     # fetch v8 source code
     - name: fetch v8
       run: |
-        export DEPOT_TOOLS_WIN_TOOLCHAIN=0 
-        export GYP_MSVS_VERSION=2022
-        export GYP_GENERATORS=ninja,msvs-ninja
-        export GYP_MSVS_OVERRIDE_PATH=D:\Visual Studio\2022\Community
         source ~/.bash_profile
         fetch v8
         cd v8
@@ -63,10 +59,6 @@ jobs:
         
     - name: build v8
       run: |
-        export DEPOT_TOOLS_WIN_TOOLCHAIN=0 
-        export GYP_MSVS_VERSION=2022
-        export GYP_GENERATORS=ninja,msvs-ninja
-        export GYP_MSVS_OVERRIDE_PATH=D:\Visual Studio\2022\Community
         source ~/.bash_profile
         gclient sync -f
     
@@ -90,7 +82,7 @@ jobs:
         ./transfer wet -s -p 64 --no-progress depot_tools.zip 2>&1 | tee transfer.log
         grep http transfer.log
    
-    # upload v8.zip to cowtransfer
+    # upload v8
     - name: upload v8_src
       if: env.SRC_UPLOAD == 'true' && !cancelled()
       run: |
